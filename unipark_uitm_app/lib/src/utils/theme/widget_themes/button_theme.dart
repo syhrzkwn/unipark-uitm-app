@@ -14,6 +14,7 @@ class AppButtonTheme {
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 14.0,
         ),
       ),
       padding: MaterialStateProperty.all<EdgeInsets>(
@@ -35,6 +36,7 @@ class AppButtonTheme {
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 14.0,
         ),
       ),
       padding: MaterialStateProperty.all<EdgeInsets>(
@@ -54,6 +56,7 @@ class AppButtonTheme {
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 14.0,
         ),
       ),
       padding: MaterialStateProperty.all<EdgeInsets>(
@@ -75,6 +78,7 @@ class AppButtonTheme {
       textStyle: MaterialStateProperty.all<TextStyle>(
         const TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: 14.0,
         ),
       ),
       padding: MaterialStateProperty.all<EdgeInsets>(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unipark_uitm_app/src/constants/colors.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/appbar_theme.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/text_theme.dart';

@@ -49,7 +49,7 @@ class SigninPage extends StatelessWidget {
                       const Gap(10.0),
                       Text(
                         'Sign in to start exploring parking inside UiTM',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
                   ),
@@ -62,6 +62,7 @@ class SigninPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 autovalidateMode: AutovalidateMode.onUserInteraction,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -72,7 +73,6 @@ class SigninPage extends StatelessWidget {
                                   }
                                   return null;
                                 },
-                                style: Theme.of(context).textTheme.bodyMedium,
                                 decoration: const InputDecoration(
                                   labelText: 'Email',
                                   hintText: 'Email',
@@ -90,7 +90,6 @@ class SigninPage extends StatelessWidget {
                                 obscureText: true,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                style: Theme.of(context).textTheme.bodyMedium,
                                 decoration: const InputDecoration(
                                   labelText: 'Password',
                                   hintText: 'Password',
@@ -104,9 +103,9 @@ class SigninPage extends StatelessWidget {
                                   onPressed: () {
                                     Get.to(() => const ForgotPasswordPage());
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     'Forgot password?',
-                                    style: Theme.of(context).textTheme.bodyMedium,
+                                    style: TextStyle(color: primaryColor, fontSize: 14.0, fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
@@ -121,7 +120,7 @@ class SigninPage extends StatelessWidget {
                               const Gap(25.0),
                               Text(
                                 'or',
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               const Gap(25.0),
                               SizedBox(
@@ -129,9 +128,8 @@ class SigninPage extends StatelessWidget {
                                 child: OutlinedButton.icon(
                                   icon: const Image(image: AssetImage(googleLogo), width:21.0),
                                   onPressed: () {},
-                                  label: Text(
+                                  label: const Text(
                                       'Continue with Google',
-                                      style: Theme.of(context).textTheme.bodyLarge
                                   ),
                                 ),
                               ),
@@ -151,9 +149,9 @@ class SigninPage extends StatelessWidget {
                               Get.to(() => const RegisterPage());
                             },
                             child: Text.rich(
-                              TextSpan(text: "Don't have an account? ", style: Theme.of(context).textTheme.bodyMedium,
+                              TextSpan(text: "Don't have an account? ", style: Theme.of(context).textTheme.titleSmall,
                                 children: const [
-                                  TextSpan(text: "Register", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: "Register", style: TextStyle(color: primaryColor, fontWeight: FontWeight.w600)),
                                 ],
                               ),
                             ),

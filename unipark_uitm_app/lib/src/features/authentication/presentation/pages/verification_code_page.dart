@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:gap/gap.dart';
-import 'package:unipark_uitm_app/src/constants/colors.dart';
 import 'package:unipark_uitm_app/src/constants/images.dart';
 import 'package:unipark_uitm_app/src/constants/sizes.dart';
 
@@ -37,7 +36,7 @@ class VerificationCodePage extends StatelessWidget {
               const Gap(10.0),
               Text(
                 "An OTP was sent to syahirzakwan.dev@gmail.com for verification",
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.titleSmall,
                 textAlign: TextAlign.center,
               ),
               const Gap(20.0),
@@ -68,7 +67,7 @@ class VerificationCodePage extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   'Request for a new OTP in 45 seconds',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
             ],

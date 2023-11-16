@@ -38,7 +38,7 @@ class ForgotPasswordPage extends StatelessWidget {
               const Gap(10.0),
               Text(
                 "Enter the email address you used when you joined and we'll send a verification code to reset your password",
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               const Gap(30.0),
               TextFormField(
@@ -52,7 +52,6 @@ class ForgotPasswordPage extends StatelessWidget {
                   }
                   return null;
                 },
-                style: Theme.of(context).textTheme.bodyMedium,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   hintText: 'Email',

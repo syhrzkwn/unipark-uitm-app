@@ -41,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'UiTM Parking Finder Mobile Application \nStart using UniPark@UiTM',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                 ],
@@ -64,7 +64,6 @@ class WelcomePage extends StatelessWidget {
                       onPressed: () {
                         Get.to(() => const RegisterPage());
                       },
-                      style: OutlinedButton.styleFrom(),
                       child: const Text('Register'),
                     ),
                   ),

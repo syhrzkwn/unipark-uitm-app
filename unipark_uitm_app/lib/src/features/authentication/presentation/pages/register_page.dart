@@ -1,4 +1,5 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class RegisterPage extends StatelessWidget {
                           height: size.height * 0.08,
                         ),
                       ),
-                      const Gap(40.0),
+                      const Gap(35.0),
                       Text(
                         'Register',
                         style: Theme.of(context).textTheme.headlineMedium,
@@ -48,13 +49,14 @@ class RegisterPage extends StatelessWidget {
                       const Gap(10.0),
                       Text(
                         'Enter your personal information',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ],
                   ),
                   Column(
                     children: [
                       TextFormField(
+                        keyboardType: TextInputType.name,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -62,7 +64,6 @@ class RegisterPage extends StatelessWidget {
                           }
                           return null;
                         },
-                        style: Theme.of(context).textTheme.bodyMedium,
                         decoration: const InputDecoration(
                           labelText: 'Name',
                           hintText: 'Name',
@@ -70,20 +71,39 @@ class RegisterPage extends StatelessWidget {
                       ),
                       const Gap(10.0),
                       TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your email address';
                           }
                           if(!_emailRegex.hasMatch(value)) {
                             return 'Email is not valid';
                           }
                           return null;
                         },
-                        style: Theme.of(context).textTheme.bodyMedium,
                         decoration: const InputDecoration(
                           labelText: 'Email',
                           hintText: 'Email',
+                        ),
+                      ),
+                      const Gap(10.0),
+                      TextFormField(
+                        keyboardType: TextInputType.phone,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your phone number';
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Phone',
+                          hintText: '123456789',
+                          prefixIcon: CountryCodePicker(
+                            initialSelection: 'MY',
+                            flagWidth: 30.0,
+                          ),
                         ),
                       ),
                       const Gap(10.0),
@@ -98,29 +118,9 @@ class RegisterPage extends StatelessWidget {
                         obscureText: true,
                         enableSuggestions: false,
                         autocorrect: false,
-                        style: Theme.of(context).textTheme.bodyMedium,
                         decoration: const InputDecoration(
                           labelText: 'Password',
                           hintText: 'Password',
-                          suffixIcon: IconButton(onPressed: null, icon: Icon(Icons.visibility)),
-                        ),
-                      ),
-                      const Gap(10.0),
-                      TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please re-enter your password';
-                          }
-                          return null;
-                        },
-                        obscureText: true,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        decoration: const InputDecoration(
-                          labelText: 'Confirm Password',
-                          hintText: 'Confirm Password',
                           suffixIcon: IconButton(onPressed: null, icon: Icon(Icons.visibility)),
                         ),
                       ),
@@ -135,7 +135,7 @@ class RegisterPage extends StatelessWidget {
                       const Gap(25.0),
                       Text(
                         'or',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       const Gap(25.0),
                       SizedBox(
@@ -143,9 +143,8 @@ class RegisterPage extends StatelessWidget {
                         child: OutlinedButton.icon(
                           icon: const Image(image: AssetImage(googleLogo), width:21.0),
                           onPressed: () {},
-                          label: Text(
+                          label: const Text(
                               'Continue with Google',
-                              style: Theme.of(context).textTheme.bodyLarge
                           ),
                         ),
                       ),
@@ -161,9 +160,9 @@ class RegisterPage extends StatelessWidget {
                               Get.to(() => const SigninPage());
                             },
                             child: Text.rich(
-                              TextSpan(text: "Already have an account? ", style: Theme.of(context).textTheme.bodyMedium,
+                              TextSpan(text: "Already have an account? ", style: Theme.of(context).textTheme.titleSmall,
                                 children: const [
-                                  TextSpan(text: "Sign In", style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: "Sign In", style: TextStyle(color: primaryColor, fontWeight: FontWeight.w600)),
                                 ],
                               ),
                             ),
