@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/constants/images.dart';
 import 'package:unipark_uitm_app/src/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/features/authentication/presentation/pages/verification_code_page.dart';
@@ -62,11 +63,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const VerificationCodePage(),
-                      ),
-                    );
+                    Get.to(() => const VerificationCodePage());
                   },
                   child: const Text('Request'),
                 ),

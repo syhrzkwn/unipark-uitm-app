@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/constants/colors.dart';
 import 'package:unipark_uitm_app/src/constants/images.dart';
 import 'package:unipark_uitm_app/src/constants/sizes.dart';
@@ -157,11 +158,7 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const SigninPage(),
-                                ),
-                              );
+                              Get.to(() => const SigninPage());
                             },
                             child: Text.rich(
                               TextSpan(text: "Already have an account? ", style: Theme.of(context).textTheme.bodyMedium,

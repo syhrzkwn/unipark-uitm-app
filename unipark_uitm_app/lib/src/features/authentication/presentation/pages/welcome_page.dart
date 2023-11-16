@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/constants/images.dart';
 import 'package:unipark_uitm_app/src/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/features/authentication/presentation/pages/register_page.dart';
@@ -51,12 +52,7 @@ class WelcomePage extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Get.to(const SigninPage());
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SigninPage(),
-                          ),
-                        );
+                        Get.to(() => const SigninPage());
                       },
                       child: const Text('Sign In'),
                     ),
@@ -66,12 +62,7 @@ class WelcomePage extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () {
-                        // Get.to(const RegisterPage());
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
-                        );
+                        Get.to(() => const RegisterPage());
                       },
                       style: OutlinedButton.styleFrom(),
                       child: const Text('Register'),

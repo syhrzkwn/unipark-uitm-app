@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/constants/colors.dart';
 import 'package:unipark_uitm_app/src/constants/images.dart';
 import 'package:unipark_uitm_app/src/constants/sizes.dart';
@@ -101,11 +102,7 @@ class SigninPage extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => const ForgotPasswordPage(),
-                                      ),
-                                    );
+                                    Get.to(() => const ForgotPasswordPage());
                                   },
                                   child: Text(
                                     'Forgot password?',
@@ -117,8 +114,7 @@ class SigninPage extends StatelessWidget {
                               SizedBox(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: () {
-                                  },
+                                  onPressed: () {},
                                   child: const Text('Sign In'),
                                 ),
                               ),
@@ -152,11 +148,7 @@ class SigninPage extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const RegisterPage(),
-                                ),
-                              );
+                              Get.to(() => const RegisterPage());
                             },
                             child: Text.rich(
                               TextSpan(text: "Don't have an account? ", style: Theme.of(context).textTheme.bodyMedium,
