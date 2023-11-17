@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "49883497208",
+    "project_id": "unipark-uitm-app-dev",
+    "storage_bucket": "unipark-uitm-app-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49883497208:android:72cc24dba03d1adebab10d",
+        "android_client_info": {
+          "package_name": "com.unipark.unipark_uitm_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnRu42Xq4vMLH13NNEEfV5U5QXxjwtR18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

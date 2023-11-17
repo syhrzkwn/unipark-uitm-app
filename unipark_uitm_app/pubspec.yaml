@@ -40,6 +40,9 @@ dependencies:
   colorful_safe_area: ^1.0.0
   flutter_otp_text_field: ^1.1.1
   get: ^4.6.5
+  firebase_core: ^2.22.0
+  firebase_auth: ^4.14.0
+  country_code_picker: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -84,7 +87,6 @@ flutter:
     - assets/images/ic_launcher_2.png
     - assets/images/unipark_logo.png
     - assets/images/google_logo.png
-    - assets/images/uitm_white_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -10,7 +10,6 @@ import 'package:unipark_uitm_app/src/features/authentication/presentation/pages/
 
 class SigninPage extends StatelessWidget {
   const SigninPage({super.key});
-  RegExp get _emailRegex => RegExp(r'^\S+@\S+$');
 
   @override
   Widget build(BuildContext context) {
@@ -53,92 +52,7 @@ class SigninPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Form(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: formHeight - 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              TextFormField(
-                                keyboardType: TextInputType.emailAddress,
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your email';
-                                  }
-                                  if(!_emailRegex.hasMatch(value)) {
-                                    return 'Email is not valid';
-                                  }
-                                  return null;
-                                },
-                                decoration: const InputDecoration(
-                                  labelText: 'Email',
-                                  hintText: 'Email',
-                                ),
-                              ),
-                              const Gap(10.0),
-                              TextFormField(
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password';
-                                  }
-                                  return null;
-                                },
-                                obscureText: true,
-                                enableSuggestions: false,
-                                autocorrect: false,
-                                decoration: const InputDecoration(
-                                  labelText: 'Password',
-                                  hintText: 'Password',
-                                  suffixIcon: IconButton(onPressed: null, icon: Icon(Icons.visibility)),
-                                ),
-                              ),
-                              const Gap(10.0),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Get.to(() => const ForgotPasswordPage());
-                                  },
-                                  child: const Text(
-                                    'Forgot password?',
-                                    style: TextStyle(color: primaryColor, fontSize: 14.0, fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                              const Gap(10.0),
-                              SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: const Text('Sign In'),
-                                ),
-                              ),
-                              const Gap(25.0),
-                              Text(
-                                'or',
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                              const Gap(25.0),
-                              SizedBox(
-                                width: double.infinity,
-                                child: OutlinedButton.icon(
-                                  icon: const Image(image: AssetImage(googleLogo), width:21.0),
-                                  onPressed: () {},
-                                  label: const Text(
-                                      'Continue with Google',
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const SignInFormWidget(),
                   Column(
                     children: [
                       Column(
@@ -164,6 +78,103 @@ class SigninPage extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class SignInFormWidget extends StatelessWidget {
+  const SignInFormWidget({
+    super.key,
+  });
+  RegExp get _emailRegex => RegExp(r'^\S+@\S+$');
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: formHeight - 10.0),
+      child: Form(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                if(!_emailRegex.hasMatch(value)) {
+                  return 'Email is not valid';
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                hintText: 'Email',
+              ),
+            ),
+            const Gap(10.0),
+            TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                hintText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.visibility),
+                ),
+              ),
+            ),
+            const Gap(10.0),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Get.to(() => const ForgotPasswordPage());
+                },
+                child: const Text(
+                  'Forgot password?',
+                  style: TextStyle(color: primaryColor, fontSize: 14.0, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+            const Gap(10.0),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text('Sign In'),
+              ),
+            ),
+            const Gap(25.0),
+            Text(
+              'or',
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            const Gap(25.0),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                icon: const Image(image: AssetImage(googleLogo), width:21.0),
+                onPressed: () {},
+                label: const Text(
+                    'Continue with Google',
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
