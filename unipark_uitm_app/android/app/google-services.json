@@ -12,7 +12,20 @@
           "package_name": "com.unipark.unipark_uitm_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "49883497208-uln42b3948qmbbglm41um45jak1e1b5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unipark.unipark_uitm_app",
+            "certificate_hash": "1e0858bd1e9562f7060db2f753beb5ffafaab214"
+          }
+        },
+        {
+          "client_id": "49883497208-m95bj6i4tne35inqufr3132k89q55om4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAnRu42Xq4vMLH13NNEEfV5U5QXxjwtR18"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49883497208-m95bj6i4tne35inqufr3132k89q55om4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
