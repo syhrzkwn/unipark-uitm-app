@@ -38,7 +38,6 @@ dependencies:
   flutter_native_splash: ^2.3.5
   gap: ^3.0.1
   colorful_safe_area: ^1.0.0
-  flutter_otp_text_field: ^1.1.1
   get: ^4.6.5
   firebase_core: ^2.22.0
   firebase_auth: ^4.14.0
@@ -97,7 +96,7 @@ flutter:
     - assets/images/intro_2.png
     - assets/images/intro_3.png
     - assets/images/forgot_password.png
-    - assets/images/verification_code.png
+    - assets/images/reset_password.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
