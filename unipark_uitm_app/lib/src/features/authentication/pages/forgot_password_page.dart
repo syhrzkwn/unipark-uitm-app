@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/authentication/controllers/forgot_password_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
@@ -19,10 +18,6 @@ class ForgotPasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: GestureDetector(
-          child: const Icon(Bootstrap.arrow_left),
-          onTap: () => Get.back(),
-        ),
       ),
       body: SingleChildScrollView(
         child: Container(

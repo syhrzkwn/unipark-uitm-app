@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
 import 'package:unipark_uitm_app/src/utils/constants/images.dart';
@@ -98,7 +97,7 @@ class IntroductionPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        next: Icon(Bootstrap.arrow_right, color: dark ? whiteColor : primaryColor),
+        next: Icon(Icons.arrow_forward_outlined, color: dark ? whiteColor : primaryColor),
         done: Text(
           "Done",
           style: TextStyle(

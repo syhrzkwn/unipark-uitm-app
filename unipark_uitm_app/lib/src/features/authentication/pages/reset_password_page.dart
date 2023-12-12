@@ -23,7 +23,7 @@ class ResetPasswordPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
-          child: const Icon(Bootstrap.x_lg),
+          child: const Icon(Icons.close_outlined),
           onTap: () {
             Get.offAll(() => const SigninPage());
           },

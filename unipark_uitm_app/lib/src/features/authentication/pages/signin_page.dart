@@ -130,7 +130,7 @@ class SignInFormWidget extends StatelessWidget {
                   hintText: 'Password',
                   suffixIcon: IconButton(
                     onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                    icon: Icon(controller.hidePassword.value ? Bootstrap.eye_slash : Bootstrap.eye),
+                    icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                   ),
                 ),
               ),
