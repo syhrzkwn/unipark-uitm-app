@@ -156,19 +156,12 @@ class SignInFormWidget extends StatelessWidget {
                 child: const Text('Sign In'),
               ),
             ),
-            const Gap(25.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(child: Divider(color: dark ? whiteColor : textColor2, thickness: 0.5, indent: 5, endIndent: 10)),
-                Text(
-                  'or',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                Flexible(child: Divider(color: dark ? whiteColor : textColor2, thickness: 0.5, indent: 10, endIndent: 5)),
-              ],
+            const Gap(20.0),
+            Text(
+              'Or',
+              style: Theme.of(context).textTheme.titleSmall,
             ),
-            const Gap(25.0),
+            const Gap(20.0),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
