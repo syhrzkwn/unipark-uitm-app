@@ -16,7 +16,7 @@ class SnackBarTheme {
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(20.0),
         borderRadius: 5.0,
-      icon: const Icon(Bootstrap.check_circle_fill, color: Colors.greenAccent,)
+      icon: const Icon(Bootstrap.check_circle_fill, color: Colors.green,)
     );
   }
 
@@ -32,7 +32,7 @@ class SnackBarTheme {
         duration: const Duration(seconds: 5),
         margin: const EdgeInsets.all(20.0),
         borderRadius: 5.0,
-        icon: const Icon(Bootstrap.exclamation_circle_fill, color: Colors.orangeAccent,)
+        icon: const Icon(Bootstrap.exclamation_circle_fill, color: Colors.orange,)
     );
   }
 
@@ -48,7 +48,7 @@ class SnackBarTheme {
         duration: const Duration(seconds: 5),
         margin: const EdgeInsets.all(20.0),
         borderRadius: 5.0,
-        icon: const Icon(Bootstrap.exclamation_circle_fill, color: Colors.redAccent,)
+        icon: const Icon(Bootstrap.exclamation_circle_fill, color: Colors.red,)
     );
   }
 }
