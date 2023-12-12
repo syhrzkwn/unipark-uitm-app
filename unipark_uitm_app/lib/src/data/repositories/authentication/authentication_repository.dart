@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/introduction_page.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
-import 'package:unipark_uitm_app/src/features/core/pages/home_page.dart';
+import 'package:unipark_uitm_app/src/features/core/pages/navigation_menu.dart';
 import 'package:unipark_uitm_app/src/data/repositories/exceptions/firebase_auth_exception.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -25,7 +25,7 @@ class AuthenticationRepository extends GetxController {
 
     // if the user is logged in
     if (user != null) {
-      Get.offAll(() => const HomePage()); // redirect to HomePage
+      Get.offAll(() => const NavigationMenu()); // redirect to HomePage
     } else {
       Get.offAll(() => const IntroductionPage()); // redirect to IntroductionPage
     }
