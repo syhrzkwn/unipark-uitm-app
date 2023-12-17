@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:unipark_uitm_app/src/utils/theme/formatter/formatter.dart';
+import 'package:unipark_uitm_app/src/utils/helpers/formatter.dart';
 
 class UserModel {
   final String id;
@@ -45,6 +45,6 @@ class UserModel {
         phone: data['phone'] ?? '',
       );
     }
-    return UserModel(id: '', name: '', studentId: '', email: '', phone: '');
+    return UserModel.empty();
   }
 }
