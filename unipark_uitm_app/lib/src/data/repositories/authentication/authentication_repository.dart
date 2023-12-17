@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:unipark_uitm_app/src/data/repositories/user/user_repository.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/introduction_page.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
 import 'package:unipark_uitm_app/src/features/core/pages/navigation_menu.dart';
@@ -13,6 +14,9 @@ class AuthenticationRepository extends GetxController {
 
   // Variables
   final _auth = FirebaseAuth.instance;
+
+  // Get authenticated user data
+  User? get authUser => _auth.currentUser;
 
   @override
   void onReady() {
@@ -94,6 +98,29 @@ class AuthenticationRepository extends GetxController {
       await GoogleSignIn().signOut();
       await _auth.signOut();
       Get.offAll(() => const SigninPage());
+    } on FirebaseAuthException catch(e) {
+      throw TFirebaseAuthException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } on FirebaseAuthException catch(e) {
+      throw TFirebaseAuthException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
+
+  // Email & Password - Sign In
+  Future<void> reSignInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
     } on FirebaseAuthException catch(e) {
       throw TFirebaseAuthException(e.code).message;
     } catch (e) {
