@@ -53,23 +53,19 @@ class RegisterPage extends StatelessWidget {
                   ),
                   const RegisterFormWidget(),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Get.to(() => const SigninPage());
-                            },
-                            child: Text.rich(
-                              TextSpan(text: "Already have an account? ", style: Theme.of(context).textTheme.titleSmall,
-                                children: [
-                                  TextSpan(text: "Sign In", style: TextStyle(color: dark ? whiteColor : primaryColor, fontWeight: FontWeight.w600)),
-                                ],
-                              ),
-                            ),
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => const SigninPage());
+                        },
+                        child: Text.rich(
+                          TextSpan(text: "Already have an account? ", style: Theme.of(context).textTheme.titleSmall,
+                            children: [
+                              TextSpan(text: "Sign In", style: TextStyle(color: dark ? whiteColor : primaryColor, fontWeight: FontWeight.w600)),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),

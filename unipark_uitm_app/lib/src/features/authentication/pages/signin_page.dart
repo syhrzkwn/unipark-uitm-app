@@ -59,23 +59,19 @@ class SigninPage extends StatelessWidget {
                   ),
                   const SignInFormWidget(),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Get.to(() => const RegisterPage());
-                            },
-                            child: Text.rich(
-                              TextSpan(text: "Don't have an account? ", style: Theme.of(context).textTheme.titleSmall,
-                                children: [
-                                  TextSpan(text: "Register", style: TextStyle(color: dark ? whiteColor : primaryColor, fontWeight: FontWeight.w600)),
-                                ],
-                              ),
-                            ),
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => const RegisterPage());
+                        },
+                        child: Text.rich(
+                          TextSpan(text: "Don't have an account? ", style: Theme.of(context).textTheme.titleSmall,
+                            children: [
+                              TextSpan(text: "Register", style: TextStyle(color: dark ? whiteColor : primaryColor, fontWeight: FontWeight.w600)),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
