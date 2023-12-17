@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unipark_uitm_app/src/features/inbox/pages/inbox_page.dart';
+import 'package:unipark_uitm_app/src/features/profile/pages/profile_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
 import 'package:unipark_uitm_app/src/features/core/pages/home_page.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
@@ -18,12 +20,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
     Center(
       child: Text("Parking"),
     ),
-    Center(
-      child: Text("Inbox"),
-    ),
-    Center(
-      child: Text("Profile"),
-    ),
+    InboxPage(),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -42,11 +40,11 @@ class _NavigationMenuState extends State<NavigationMenu> {
         height: 65.0,
         child: Container(
           decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: textColor2, width: 0.5)),
+            // border: Border(top: BorderSide(color: textColor2, width: 0.5)),
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            elevation: 0,
+            // elevation: 0,
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
             iconSize: 30.0,
