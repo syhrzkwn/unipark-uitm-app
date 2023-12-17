@@ -7,3 +7,4 @@ const blackColor = Colors.black;
 const darkModeBackground = Color(0xFF303030);
 const textColor1 = Color(0xFF454545);
 const textColor2 = Color(0xFF767676);
+const borderColor = Color(0xFFE0E0E0);
