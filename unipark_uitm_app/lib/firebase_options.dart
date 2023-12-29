@@ -58,5 +58,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '49883497208',
     projectId: 'unipark-uitm-app-dev',
     storageBucket: 'unipark-uitm-app-dev.appspot.com',
+    databaseURL: 'https://unipark-uitm-app-dev-default-rtdb.asia-southeast1.firebasedatabase.app/',
   );
 }

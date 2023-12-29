@@ -48,6 +48,10 @@ dependencies:
   cloud_firestore: ^4.13.5
   get_storage: ^2.1.1
   google_sign_in: ^6.1.6
+  google_maps_flutter: ^2.5.0
+  location: ^5.0.3
+  firebase_database: ^10.3.8
+  package_info_plus: ^4.2.0
 
 dev_dependencies:
   flutter_test:
