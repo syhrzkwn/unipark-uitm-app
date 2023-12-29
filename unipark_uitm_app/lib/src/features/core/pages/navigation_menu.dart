@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:unipark_uitm_app/src/features/inbox/pages/inbox_page.dart';
+import 'package:unipark_uitm_app/src/features/parking/pages/parking_page.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/profile_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
-import 'package:unipark_uitm_app/src/features/core/pages/home_page.dart';
+import 'package:unipark_uitm_app/src/features/home/pages/home_page.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatefulWidget {
@@ -17,9 +18,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
 
   static const List<Widget> _pages = <Widget>[
     HomePage(),
-    Center(
-      child: Text("Parking"),
-    ),
+    ParkingPage(),
     InboxPage(),
     ProfilePage(),
   ];
