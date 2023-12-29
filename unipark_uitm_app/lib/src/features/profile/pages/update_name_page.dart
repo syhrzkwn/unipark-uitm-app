@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/features/profile/controllers/update_name_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_widget.dart';
 
 class UpdateNamePage extends StatelessWidget {
   const UpdateNamePage({super.key});
@@ -24,19 +25,19 @@ class UpdateNamePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Update your name', style: Theme.of(context).textTheme.headlineSmall),
+                Text('Update your full name', style: Theme.of(context).textTheme.headlineSmall),
                 const Gap(40.0),
-                TextFormField(
+                const Text('FULL NAME', style: TextStyle(fontWeight: FontWeight.bold)),
+                WTextFormField(
                   controller: controller.name,
                   keyboardType: TextInputType.name,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) => Validations.validateEmptyText('Name', value),
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    hintText: 'Name',
-                  ),
+                  hintText: 'Ali bin Abu',
+                  obscureText: false,
+                  enableSuggestions: false,
+                  autocorrect: false,
                 ),
-                const Gap(20.0),
+                const Gap(30.0),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

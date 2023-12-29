@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/features/profile/controllers/update_phone_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_widget.dart';
 
 class UpdatePhonePage extends StatelessWidget {
   const UpdatePhonePage({super.key});
@@ -26,19 +27,18 @@ class UpdatePhonePage extends StatelessWidget {
               children: [
                 Text('Update your phone number', style: Theme.of(context).textTheme.headlineSmall),
                 const Gap(40.0),
-                TextFormField(
+                const Text('PHONE NUMBER', style: TextStyle(fontWeight: FontWeight.bold)),
+                WTextFormField(
                   controller: controller.phone,
                   keyboardType: TextInputType.phone,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   maxLength: 15,
                   validator: (value) => Validations.validateEmptyText('Phone number', value),
-                  decoration: const InputDecoration(
-                    counterText: '',
-                    labelText: 'Phone',
-                    hintText: 'Phone',
-                  ),
+                  hintText: '0123456789',
+                  obscureText: false,
+                  enableSuggestions: false,
+                  autocorrect: false,
                 ),
-                const Gap(20.0),
+                const Gap(30.0),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

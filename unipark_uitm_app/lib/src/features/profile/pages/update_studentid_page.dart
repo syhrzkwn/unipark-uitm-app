@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/features/profile/controllers/update_studentid_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_widget.dart';
 
 class UpdateStudentIdPage extends StatelessWidget {
   const UpdateStudentIdPage({super.key});
@@ -26,19 +27,18 @@ class UpdateStudentIdPage extends StatelessWidget {
               children: [
                 Text('Update your Student ID', style: Theme.of(context).textTheme.headlineSmall),
                 const Gap(40.0),
-                TextFormField(
+                const Text('STUDENT ID', style: TextStyle(fontWeight: FontWeight.bold)),
+                WTextFormField(
                   controller: controller.studentId,
                   keyboardType: TextInputType.number,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   maxLength: 10,
                   validator: (value) => Validations.validateStudentId(value),
-                  decoration: const InputDecoration(
-                    counterText: '',
-                    labelText: 'Student ID',
-                    hintText: 'Student ID',
-                  ),
+                  hintText: '2022123456',
+                  obscureText: false,
+                  enableSuggestions: false,
+                  autocorrect: false,
                 ),
-                const Gap(20.0),
+                const Gap(30.0),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
