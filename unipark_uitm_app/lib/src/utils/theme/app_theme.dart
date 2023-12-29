@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/appbar_theme.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/button_theme.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/text_theme.dart';
-import 'package:unipark_uitm_app/src/utils/theme/widget_themes/textform_field_theme.dart';
 
 class AppTheme {
 
@@ -27,7 +26,6 @@ class AppTheme {
     appBarTheme: AppBarThemeData.lightAppBarTheme,
     elevatedButtonTheme: AppButtonTheme.lightButtonTheme,
     outlinedButtonTheme: AppButtonTheme.lightOutlinedButtonTheme,
-    inputDecorationTheme: TextFormFieldTheme.lightInputDecorationTheme,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -49,6 +47,5 @@ class AppTheme {
     appBarTheme: AppBarThemeData.darkAppBarTheme,
     elevatedButtonTheme: AppButtonTheme.darkButtonTheme,
     outlinedButtonTheme: AppButtonTheme.darkOutlinedButtonTheme,
-    inputDecorationTheme: TextFormFieldTheme.darkInputDecorationTheme,
   );
 }
