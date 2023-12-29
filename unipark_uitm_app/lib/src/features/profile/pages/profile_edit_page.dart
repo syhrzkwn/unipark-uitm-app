@@ -30,7 +30,7 @@ class ProfileEditPage extends StatelessWidget {
             children: [
               Text('Edit profile', style: Theme.of(context).textTheme.headlineSmall),
               const Gap(40.0),
-              const Text('NAME', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('FULL NAME', style: TextStyle(fontWeight: FontWeight.bold)),
               ListTile(
                 title: Text(userController.user.value.name),
                 trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
@@ -40,7 +40,7 @@ class ProfileEditPage extends StatelessWidget {
               const Gap(20.0),
               const Text('STUDENT ID', style: TextStyle(fontWeight: FontWeight.bold)),
               ListTile(
-                title: Text(userController.user.value.studentId),
+                title: Text(userController.user.value.studentId.toString()),
                 trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
                 onTap: () {Get.to(() => const UpdateStudentIdPage());},
               ),

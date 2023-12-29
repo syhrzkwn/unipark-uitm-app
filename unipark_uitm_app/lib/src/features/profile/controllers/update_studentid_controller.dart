@@ -21,7 +21,7 @@ class UpdateStudentIdController extends GetxController {
   }
 
   Future<void> initializeStudentId() async {
-    studentId.text = userController.user.value.studentId;
+    studentId.text = userController.user.value.studentId.toString();
   }
 
   Future<void> updateStudentId() async {
@@ -37,7 +37,7 @@ class UpdateStudentIdController extends GetxController {
       Map<String, dynamic> udpatedStudentId = {'student_id': studentId.text.trim()};
       await userRespository.updateSingleField(udpatedStudentId);
 
-      userController.user.value.studentId = studentId.text.trim();
+      userController.user.value.studentId = int.parse(studentId.text.trim());
 
       SnackBarTheme.successSnackBar(title: 'Success', message: 'Your Student ID has been updated.');
 

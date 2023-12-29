@@ -4,7 +4,7 @@ import 'package:unipark_uitm_app/src/utils/helpers/formatter.dart';
 class UserModel {
   final String id;
   String name;
-  String studentId;
+  int studentId;
   final String email;
   String phone;
 
@@ -21,7 +21,7 @@ class UserModel {
   String get formattedPhoneNo => Formatter.formatPhoneNumber(phone);
 
   // Static function to create an empty user model
-  static UserModel empty() => UserModel(id: '', name: '', studentId: '', email: '', phone: '');
+  static UserModel empty() => UserModel(id: '', name: '', studentId: 0, email: '', phone: '');
 
   // Convert model to JSON structure for storing data in Firebase
   Map<String, dynamic> toJson() {
@@ -40,7 +40,7 @@ class UserModel {
       return UserModel(
         id: document.id,
         name: data['name'] ?? '',
-        studentId: data['student_id'] ?? '',
+        studentId: data['student_id'] ?? 0,
         email: data['email'] ?? '',
         phone: data['phone'] ?? '',
       );

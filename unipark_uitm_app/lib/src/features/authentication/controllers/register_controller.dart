@@ -35,7 +35,7 @@ class RegisterController extends GetxController {
       final newUser = UserModel(
         id: userCredential.user!.uid,
         name: name.text.trim(),
-        studentId: studentId.text.trim(),
+        studentId: int.parse(studentId.text.trim()),
         email: email.text.trim(),
         phone: phone.text.trim(),
       );

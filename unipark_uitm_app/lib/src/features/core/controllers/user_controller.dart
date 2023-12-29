@@ -43,7 +43,7 @@ class UserController extends GetxController {
         final user = UserModel(
           id: userCredential.user!.uid,
           name: userCredential.user!.displayName ?? '',
-          studentId: '',
+          studentId: 0,
           email: userCredential.user!.email ?? '',
           phone: userCredential.user!.phoneNumber ?? '',
         );
