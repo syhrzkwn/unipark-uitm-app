@@ -15,6 +15,8 @@ class ProfileController extends GetxController {
     installerStore: 'Unknown',
   ).obs;
 
+  final switchTheme = false.obs;
+
   @override
   void onInit() {
     super.onInit();

@@ -8,8 +8,10 @@ import 'package:unipark_uitm_app/src/features/rfid/pages/rfid_page.dart';
 import 'package:unipark_uitm_app/src/features/vehicle/pages/vehicles_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
+import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 import 'package:unipark_uitm_app/src/features/authentication/controllers/logout_controller.dart';
+import 'package:unipark_uitm_app/src/utils/theme/app_theme.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -20,6 +22,7 @@ class ProfilePage extends StatelessWidget {
     final userController = Get.put(UserController());
     final profileController = Get.put(ProfileController());
     final dark = HelperFunction.isDarkMode(context);
+    var size = HelperFunction.screenSize();
 
     return SafeArea(
       child: Scaffold(
@@ -64,20 +67,54 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {Get.to(() => const RFIDPage());},
                 ),
                 const Divider(color: borderColor, indent: 70.0),
-                // const Gap(30.0),
-                // Text('Setting', style: TextStyle(fontFamily: 'Epilogue', fontSize: 20.0, fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
-                // const Gap(10.0),
-                // const Divider(color: borderColor),
-                // ListTile(
-                //   leading: Icon(Icons.dark_mode_outlined, color: dark ? whiteColor : textColor1),
-                //   title: const Text('Theme'),
-                //   trailing: Switch(
-                //     value: false,
-                //     onChanged: (value) {}
-                //   ),
-                // ),
-                // const Divider(color: borderColor, indent: 70.0),
-                const Gap(50.0),
+                const Gap(30.0),
+
+                Text('Settings', style: TextStyle(fontFamily: 'Epilogue', fontSize: 20.0, fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
+                const Gap(10.0),
+                const Divider(color: borderColor),
+                ListTile(
+                  leading: Icon(Icons.dark_mode_outlined, color: dark ? whiteColor : textColor1),
+                  title: const Text('Theme'),
+                  trailing: Obx(
+                    () => Switch(
+                      activeColor: primaryColor,
+                      value: profileController.switchTheme.value,
+                      onChanged: (value) {
+                        profileController.switchTheme.value = !profileController.switchTheme.value;
+                        profileController.switchTheme.value ? Get.changeTheme(AppTheme.darkTheme) : Get.changeTheme(AppTheme.lightTheme);
+                      },
+                    ),
+                  ),
+                ),
+                const Divider(color: borderColor, indent: 70.0),
+                const Gap(30.0),
+
+                Text('Support', style: TextStyle(fontFamily: 'Epilogue', fontSize: 20.0, fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
+                const Gap(10.0),
+                const Divider(color: borderColor),
+                ListTile(
+                  leading: Icon(Icons.info_outline_rounded, color: dark ? whiteColor : textColor1),
+                  title: const Text('About'),
+                  trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
+                  onTap: () {
+                    showAboutDialog(
+                      context: context,
+                      applicationName: profileController.appInfo.value.appName,
+                      applicationVersion: '${profileController.appInfo.value.version} (${profileController.appInfo.value.buildNumber})',
+                      applicationLegalese: 'UniPark@UiTM: UiTM Parking Finder Mobile Application\n\n© ${DateTime.now().year} syhrzkwn.dev',
+                      applicationIcon: Padding(
+                        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                        child: Image(
+                          image: const AssetImage(uniparkLogo),
+                          height: size.height * 0.05,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const Divider(color: borderColor, indent: 70.0),
+                const Gap(30.0),
+
                 Center(
                   child: Column(
                     children: [
@@ -87,17 +124,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const Gap(10.0),
                       Obx(
-                        () => Text.rich(
-                          TextSpan(text: profileController.appInfo.value.appName, style: const TextStyle(fontSize: 12.0, color: textColor2),
-                            children: [
-                              const TextSpan(text: ' '),
-                              TextSpan(text: profileController.appInfo.value.version),
-                              const TextSpan(text: '('),
-                              TextSpan(text: profileController.appInfo.value.buildNumber),
-                              const TextSpan(text: ')'),
-                            ],
-                          ),
-                        ),
+                        () => Text('${profileController.appInfo.value.appName} ${profileController.appInfo.value.version} (${profileController.appInfo.value.buildNumber})', style: const TextStyle(fontSize: 12.0, color: textColor2)),
                       ),
                     ],
                   ),
