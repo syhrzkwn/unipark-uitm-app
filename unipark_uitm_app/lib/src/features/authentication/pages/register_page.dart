@@ -10,6 +10,7 @@ import 'package:unipark_uitm_app/src/features/authentication/controllers/signin_
 import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_outline_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -95,69 +96,64 @@ class RegisterFormWidget extends StatelessWidget {
         key: controller.registerFormKey,
         child: Column(
           children: [
-            TextFormField(
+            WTextFormFieldOutline(
               controller: controller.name,
-              keyboardType: TextInputType.name,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.text,
+              obscureText: false,
+              enableSuggestions: false,
+              autocorrect: false,
               validator: (value) => Validations.validateEmptyText('Name', value),
-              decoration: const InputDecoration(
-                labelText: 'Name',
-                hintText: 'Name',
-              ),
+              labelText: 'Name',
+              hintText: 'Name',
             ),
             const Gap(10.0),
-            TextFormField(
+            WTextFormFieldOutline(
               controller: controller.studentId,
               keyboardType: TextInputType.number,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              maxLength: 10,
+              obscureText: false,
+              enableSuggestions: false,
+              autocorrect: false,
               validator: (value) => Validations.validateStudentId(value),
-              decoration: const InputDecoration(
-                counterText: '',
-                labelText: 'Student ID',
-                hintText: '2021234567',
-              ),
+              labelText: 'Student ID',
+              hintText: '2021234567',
+              maxLength: 10,
             ),
             const Gap(10.0),
-            TextFormField(
+            WTextFormFieldOutline(
               controller: controller.email,
               keyboardType: TextInputType.emailAddress,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              obscureText: false,
+              enableSuggestions: false,
+              autocorrect: false,
               validator: (value) => Validations.validateEmail(value),
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                hintText: 'Email',
-              ),
+              labelText: 'Email',
+              hintText: 'Email',
             ),
             const Gap(10.0),
-            TextFormField(
+            WTextFormFieldOutline(
               controller: controller.phone,
               keyboardType: TextInputType.phone,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              obscureText: false,
+              enableSuggestions: false,
+              autocorrect: false,
+              validator: (value) => Validations.validateEmptyText('Phone', value),
+              labelText: 'Phone',
+              hintText: '0123456789',
               maxLength: 11,
-              validator: (value) => Validations.validateEmptyText('Phone number', value),
-              decoration: const InputDecoration(
-                counterText: '',
-                labelText: 'Phone',
-                hintText: '0123456789',
-              ),
             ),
             const Gap(10.0),
-            Obx (
-              () => TextFormField(
+            Obx(
+              () => WTextFormFieldOutline(
                 controller: controller.password,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => Validations.validatePassword(value),
                 obscureText: controller.hidePassword.value,
                 enableSuggestions: false,
                 autocorrect: false,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Password',
-                  suffixIcon: IconButton(
-                    onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                    icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                  ),
+                validator: (value) => Validations.validatePassword(value),
+                labelText: 'Password',
+                hintText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                  icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                 ),
               ),
             ),

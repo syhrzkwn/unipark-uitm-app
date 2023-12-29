@@ -11,6 +11,7 @@ import 'package:unipark_uitm_app/src/features/authentication/pages/forgot_passwo
 import 'package:unipark_uitm_app/src/features/authentication/pages/register_page.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_outline_widget.dart';
 
 class SigninPage extends StatelessWidget {
   const SigninPage({super.key});
@@ -102,32 +103,29 @@ class SignInFormWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextFormField(
+            WTextFormFieldOutline(
               controller: controller.email,
               keyboardType: TextInputType.emailAddress,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              obscureText: false,
+              enableSuggestions: false,
+              autocorrect: false,
               validator: (value) => Validations.validateEmptyText('Email', value),
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                hintText: 'Email',
-              ),
+              labelText: 'Email',
+              hintText: 'Email',
             ),
             const Gap(10.0),
-            Obx (
-              () => TextFormField(
+            Obx(
+              () => WTextFormFieldOutline(
                 controller: controller.password,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) => Validations.validateEmptyText('Password', value),
                 obscureText: controller.hidePassword.value,
                 enableSuggestions: false,
                 autocorrect: false,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Password',
-                  suffixIcon: IconButton(
-                    onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                    icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                  ),
+                validator: (value) => Validations.validateEmptyText('Password', value),
+                labelText: 'Password',
+                hintText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                  icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                 ),
               ),
             ),

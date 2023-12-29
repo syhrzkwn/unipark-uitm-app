@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_widget.dart';
 
 class ReSignInPage extends StatelessWidget {
   const ReSignInPage({Key ? key}) : super(key: key);
@@ -26,38 +27,35 @@ class ReSignInPage extends StatelessWidget {
               children: [
                 Text('Re-Sign In', style: Theme.of(context).textTheme.headlineSmall),
                 const Gap(10.0),
-                Text("It's sad to see you go. By re-sign in to your UniPark@UiTM Account, you're confirm to delete your account", style: Theme.of(context).textTheme.titleSmall),
+                Text("It's sad to see you go. By re-sign in to your UniPark@UiTM Account, you're confirm to delete your account.", style: Theme.of(context).textTheme.titleSmall),
                 const Gap(30.0),
-                TextFormField(
+                const Text('EMAIL', style: TextStyle(fontWeight: FontWeight.bold)),
+                WTextFormField(
                   controller: controller.verifyEmail,
                   keyboardType: TextInputType.emailAddress,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) => Validations.validateEmptyText('Email', value),
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Email',
-                  ),
+                  hintText: 'Email',
+                  obscureText: false,
+                  enableSuggestions: false,
+                  autocorrect: false,
                 ),
-                const Gap(10.0),
+                const Gap(30.0),
+                const Text('PASSWORD', style: TextStyle(fontWeight: FontWeight.bold)),
                 Obx (
-                  () => TextFormField(
+                  () => WTextFormField(
                     controller: controller.verifyPassword,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => Validations.validateEmptyText('Password', value),
                     obscureText: controller.hidePassword.value,
                     enableSuggestions: false,
                     autocorrect: false,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Password',
-                      suffixIcon: IconButton(
-                        onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                        icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                      ),
+                    hintText: 'Password',
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                     ),
                   ),
                 ),
-                const Gap(20.0),
+                const Gap(30.0),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

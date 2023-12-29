@@ -6,6 +6,7 @@ import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 import 'package:unipark_uitm_app/src/utils/validators/validation.dart';
+import 'package:unipark_uitm_app/src/utils/widgets/textformfield_outline_widget.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -46,15 +47,15 @@ class ForgotPasswordPage extends StatelessWidget {
                 key: controller.forgotPasswordFormKey,
                 child: Column(
                   children: [
-                    TextFormField(
+                    WTextFormFieldOutline(
                       controller: controller.email,
                       keyboardType: TextInputType.emailAddress,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) => Validations.validateEmail(value),
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Email',
-                      ),
+                      labelText: 'Email',
+                      hintText: 'Email',
+                      obscureText: false,
+                      enableSuggestions: false,
+                      autocorrect: false,
                     ),
                     const Gap(20.0),
                     SizedBox(
