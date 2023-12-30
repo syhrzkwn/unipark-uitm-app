@@ -61,7 +61,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 const Divider(color: borderColor, indent: 70.0),
                 ListTile(
-                  leading: Icon(Icons.qr_code_scanner_outlined, color: dark ? whiteColor : textColor1),
+                  leading: Icon(Icons.nfc_outlined, color: dark ? whiteColor : textColor1),
                   title: const Text('RFID'),
                   trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
                   onTap: () {Get.to(() => const RFIDPage());},
@@ -73,11 +73,13 @@ class ProfilePage extends StatelessWidget {
                 const Gap(10.0),
                 const Divider(color: borderColor),
                 ListTile(
-                  leading: Icon(Icons.dark_mode_outlined, color: dark ? whiteColor : textColor1),
+                  leading: Icon(dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined, color: dark ? whiteColor : textColor1),
                   title: const Text('Theme'),
                   trailing: Obx(
                     () => Switch(
                       activeColor: primaryColor,
+                      inactiveThumbColor: primaryColor,
+                      inactiveTrackColor: secondaryColor,
                       value: profileController.switchTheme.value,
                       onChanged: (value) {
                         profileController.switchTheme.value = !profileController.switchTheme.value;
