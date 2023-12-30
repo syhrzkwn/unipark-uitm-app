@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         child: FloatingActionButton.extended(
           onPressed: () {Get.to(() => const RFIDPage());},
           backgroundColor: dark ? darkModeBackground : whiteColor,
-          icon: Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
+          icon: Icon(Icons.nfc_outlined, color: dark ? whiteColor : textColor1),
           label: Text('RFID', style: TextStyle(fontSize: 16, color: dark ? whiteColor : textColor1)),
         ),
       ),
