@@ -19,7 +19,7 @@ class WGridView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
-        mainAxisExtent: 120,
+        mainAxisExtent: 145,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
       ),
