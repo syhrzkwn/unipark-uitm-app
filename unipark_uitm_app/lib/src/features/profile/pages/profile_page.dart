@@ -5,7 +5,6 @@ import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.d
 import 'package:unipark_uitm_app/src/features/profile/controllers/profile_controller.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/profile_edit_page.dart';
 import 'package:unipark_uitm_app/src/features/rfid/pages/rfid_page.dart';
-import 'package:unipark_uitm_app/src/features/vehicle/pages/vehicles_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/constants/images.dart';
@@ -35,12 +34,14 @@ class ProfilePage extends StatelessWidget {
                 const Gap(50.0),
                 Obx(() => Text(userController.user.value.name, style: Theme.of(context).textTheme.headlineSmall)),
                 const Gap(10.0),
-                const Row(
-                  children: [
-                    Text('Student'),
-                    Gap(5.0),
-                    Icon(Icons.verified, size: 16.0, color: activeGreenText,)
-                  ],
+                Obx(
+                  () => Row(
+                    children: [
+                      Text('${userController.user.value.studentId} | Student'),
+                      const Gap(5.0),
+                      const Icon(Icons.verified, size: 16.0, color: activeGreenText,)
+                    ],
+                  ),
                 ),
                 const Gap(40.0),
                 Text('Account', style: TextStyle(fontFamily: 'Epilogue', fontSize: 20.0, fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
@@ -51,13 +52,6 @@ class ProfilePage extends StatelessWidget {
                   title: const Text('Personal information'),
                   trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
                   onTap: () {Get.to(() => const ProfileEditPage());},
-                ),
-                const Divider(color: borderColor, indent: 70.0),
-                ListTile(
-                  leading: Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
-                  title: const Text('My vehicles'),
-                  trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
-                  onTap: () {Get.to(() => const VehiclesPage());},
                 ),
                 const Divider(color: borderColor, indent: 70.0),
                 ListTile(

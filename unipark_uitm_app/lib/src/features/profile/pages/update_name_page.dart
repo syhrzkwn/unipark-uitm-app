@@ -37,16 +37,18 @@ class UpdateNamePage extends StatelessWidget {
                   enableSuggestions: false,
                   autocorrect: false,
                 ),
-                const Gap(30.0),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => controller.updateUserName(),
-                    child: const Text('Update'),
-                  ),
-                ),
               ],
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(defaultSize),
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () => controller.updateUserName(),
+            child: const Text('Update'),
           ),
         ),
       ),

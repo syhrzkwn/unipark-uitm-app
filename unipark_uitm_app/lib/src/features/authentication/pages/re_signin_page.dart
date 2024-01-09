@@ -55,16 +55,18 @@ class ReSignInPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Gap(30.0),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () => controller.reSignInUserWithEmailAndPassword(),
-                    child: const Text('Verify'),
-                  ),
-                ),
               ],
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(defaultSize),
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () => controller.reSignInUserWithEmailAndPassword(),
+            child: const Text('Verify'),
           ),
         ),
       ),

@@ -19,8 +19,8 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     initPackageInfo();
+    super.onInit();
   }
 
   // To get retrieve current apps information
