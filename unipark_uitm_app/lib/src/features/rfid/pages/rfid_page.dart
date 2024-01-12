@@ -5,7 +5,6 @@ import 'package:unipark_uitm_app/src/features/rfid/controllers/rfid_controller.d
 import 'package:unipark_uitm_app/src/features/rfid/pages/rfid_add_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
-import 'package:unipark_uitm_app/src/utils/widgets/gridview_widget.dart';
 import 'package:unipark_uitm_app/src/utils/widgets/rfid_card.dart';
 
 class RFIDPage extends StatelessWidget {
@@ -39,7 +38,15 @@ class RFIDPage extends StatelessWidget {
                 if(rfidController.listActiveRfid.isEmpty) {
                   return const Center(child: Text('No active RFID found. Please activate new RFID.'));
                 }
-                return WGridView(
+                return GridView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisExtent: 145,
+                    mainAxisSpacing: 5,
+                  ),
                   itemCount: rfidController.listActiveRfid.length,
                   itemBuilder: (_, index) => WRFIDCard(rfid: rfidController.listActiveRfid[index]),
                 );
@@ -53,7 +60,15 @@ class RFIDPage extends StatelessWidget {
                     const Gap(20.0),
                     const Divider(color: borderColor),
                     const Gap(20.0),
-                    WGridView(
+                    GridView.builder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisExtent: 145,
+                        mainAxisSpacing: 5,
+                      ),
                       itemCount: rfidController.listTerminatedRfid.length,
                       itemBuilder: (_, index) => WRFIDCard(rfid: rfidController.listTerminatedRfid[index]),
                     ),

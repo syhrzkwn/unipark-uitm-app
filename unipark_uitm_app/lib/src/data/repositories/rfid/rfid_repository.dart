@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-// import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
 import 'package:unipark_uitm_app/src/features/rfid/models/rfid_model.dart';
 
 class RfidRepository extends GetxController {

@@ -4,6 +4,7 @@ class RfidModel {
   String? id;
   String? userId;
   String ownerName;
+  bool parkingEntered;
   String plateNumber;
   String rfidTagId;
   bool rfidStatus;
@@ -18,6 +19,7 @@ class RfidModel {
     this.id,
     required this.userId,
     required this.ownerName,
+    required this.parkingEntered,
     required this.plateNumber,
     required this.rfidTagId,
     required this.rfidStatus,
@@ -32,6 +34,7 @@ class RfidModel {
   static RfidModel empty() => RfidModel(
     userId: '',
     ownerName: '',
+    parkingEntered: false,
     plateNumber: '',
     rfidTagId: '',
     rfidStatus: true,
@@ -47,6 +50,7 @@ class RfidModel {
     return {
       'user_id': userId,
       'owner_name': ownerName,
+      'parking_entered': parkingEntered,
       'plate_number': plateNumber,
       'rfid_tag_id': rfidTagId,
       'rfid_status': rfidStatus,
@@ -65,6 +69,7 @@ class RfidModel {
         id: document.id,
         userId: data['user_id'] ?? '',
         ownerName: data['owner_name'] ?? '',
+        parkingEntered: data['parking_entered'] ?? false,
         plateNumber: data['plate_number'] ?? '',
         rfidTagId: data['rfid_tag_id'] ?? '',
         rfidStatus: data['rfid_status'] ?? true,
@@ -87,6 +92,7 @@ class RfidModel {
         id: document.id,
         userId: data['user_id'] ?? '',
         ownerName: data['owner_name'] ?? '',
+        parkingEntered: data['parking_entered'] ?? false,
         plateNumber: data['plate_number'] ?? '',
         rfidTagId: data['rfid_tag_id'] ?? '',
         rfidStatus: data['rfid_status'] ?? true,

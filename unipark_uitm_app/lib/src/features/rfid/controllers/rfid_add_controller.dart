@@ -31,7 +31,7 @@ class RfidAddController extends GetxController {
       DateTime currentDate = DateTime.now();
       DateTime expiredDate = currentDate.add(const Duration(days: 365));
 
-      // Format DateTiem, example: 2024-01-01
+      // Format DateTime, example: 2024-01-01
       String formattedCurrentDate = Formatter.formatDate(currentDate);
       String formattedExpiredDate = Formatter.formatDate(expiredDate);
 
@@ -40,6 +40,7 @@ class RfidAddController extends GetxController {
         id: rfidTagId.text.trim(),
         userId: AuthenticationRepository.instance.authUser?.uid,
         ownerName: ownerName.text.trim(),
+        parkingEntered: false,
         plateNumber: plateNumber.text.removeAllWhitespace.toUpperCase().trim(),
         rfidTagId: rfidTagId.text.trim(),
         rfidStatus: true,
