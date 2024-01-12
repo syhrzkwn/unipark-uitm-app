@@ -5,3 +5,7 @@ const String introTwo = "assets/images/intro_2.png";
 const String introThree = "assets/images/intro_3.png";
 const String forgotPassword = "assets/images/forgot_password.png";
 const String resetPassword = "assets/images/reset_password.png";
+const String emptyInbox = "assets/images/empty_inbox.png";
+const String mapMarker = "assets/images/map_marker.png";
+const String googleApp = "assets/images/google_map.png";
+const String wazeApp = "assets/images/waze.png";
