@@ -2,113 +2,201 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:unipark_uitm_app/src/features/home/controllers/home_controller.dart';
+import 'package:unipark_uitm_app/src/features/parking/models/parking_model.dart';
 import 'package:unipark_uitm_app/src/features/rfid/pages/rfid_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
+import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  late GoogleMapController mapController;
-  final LatLng _center = const LatLng(3.0725983122436333, 101.49826260475604);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final homeController = Get.put(HomeController());
+    var size = HelperFunction.screenSize();
     final dark = HelperFunction.isDarkMode(context);
 
     return Scaffold(
       floatingActionButton: Container(
         padding: const EdgeInsets.only(top: 15.0),
-        child: FloatingActionButton.extended(
-          onPressed: () {Get.to(() => const RFIDPage());},
-          backgroundColor: dark ? darkModeBackground : whiteColor,
-          icon: Icon(Icons.nfc_outlined, color: dark ? whiteColor : textColor1),
-          label: Text('RFID', style: TextStyle(fontSize: 16, color: dark ? whiteColor : textColor1)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              width: 48,
+              height: 48,
+              child: FittedBox(
+                child: FloatingActionButton(
+                  heroTag: 'location_button',
+                  onPressed: () => homeController.currentLocationCamera(),
+                  backgroundColor: dark ? darkModeBackground : whiteColor,
+                  child: Icon(Icons.my_location_outlined, color: dark ? whiteColor : textColor1),
+                ),
+              ),
+            ),
+            const Gap(10.0),
+            FloatingActionButton.extended(
+              heroTag: 'rfid_button',
+              onPressed: () {Get.to(() => const RFIDPage());},
+              backgroundColor: dark ? darkModeBackground : whiteColor,
+              icon: Icon(Icons.nfc_outlined, color: dark ? whiteColor : textColor1),
+              label: Text('RFID', style: TextStyle(fontSize: 16, color: dark ? whiteColor : textColor1)),
+            ),
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: MapType.normal,
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 18,
-            ),
-            markers: {
-              Marker(
-                markerId: const MarkerId('0'),
-                position: const LatLng(3.0725983122436333, 101.49826260475604),
-                icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet),
-                infoWindow: const InfoWindow(
-                  title: 'Public Parking, Kompleks Kejuruteraan, UiTM Shah Alam',
-                ),
-              ),
-            },
+      body: Obx(() {
+        if (homeController.currentLocation.value == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        ParkingModel? parkingLocation = homeController.parkingLocation.value;
+
+        return GoogleMap(
+          onMapCreated: (GoogleMapController controller) {
+            homeController.mapController = controller;
+          },
+          mapType: MapType.normal,
+          zoomControlsEnabled: false,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          trafficEnabled: true,
+          initialCameraPosition: const CameraPosition(
+            target: LatLng(0, 0), // Initial position
+            zoom: 2,
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(defaultSize),
-              child: Column(
+          markers: parkingLocation != null ? {
+            Marker(
+              markerId: MarkerId(parkingLocation.id ?? ''),
+              position: LatLng(parkingLocation.parkingLng, parkingLocation.parkingLat),
+              icon: homeController.customIcon.value ?? BitmapDescriptor.defaultMarker,
+              infoWindow: InfoWindow(
+                title: parkingLocation.parkingName,
+                snippet: parkingLocation.parkingDesc,
+              ),
+            ),
+          } : {},
+        );
+      }),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: dark ? darkModeBackground : whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 10,
+              offset: Offset.zero,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(defaultSize),
+          child: Container(
+            height: 196,
+            padding: const EdgeInsets.all(defaultSize),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: secondaryColor,
+            ),
+            child: Obx(() {
+              if (homeController.currentLocation.value == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 196,
-                    padding: const EdgeInsets.all(defaultSize),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: dark ? darkModeBackground : whiteColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 5,
-                          offset: Offset.zero,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('NEAREST PARKING • 250 M', style: TextStyle(fontWeight: FontWeight.bold)),
-                        Text('Public Parking Kompleks Kejuruteraan', style: TextStyle(fontSize: 16, fontFamily: 'Epilogue', fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
-                            const Gap(5.0),
-                            const Text('Parking Available: 22/100'),
-                          ],
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('GO TO PARKING'),
-                          ),
-                        ),
-                      ],
+                  Text('NEAREST PARKING  •  ${homeController.parkingLocation.value!.distance}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(homeController.parkingLocation.value!.parkingName, style: TextStyle(fontSize: 17, fontFamily: 'Epilogue', fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
+                      const Gap(5.0),
+                      Text(homeController.parkingLocation.value!.parkingRfidStatus ? 'Parking Available: ${homeController.parkingLocation.value!.parkingAvailable}/${homeController.parkingLocation.value!.parkingTotal}' : 'Parking Available: not counted'),
+                    ],
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          builder: (BuildContext context) {
+                            return Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: dark ? darkModeBackground : whiteColor,
+                                borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 5,
+                                    decoration: const BoxDecoration(
+                                      color: borderColor,
+                                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                                    ),
+                                  ),
+                                  const Gap(30.0),
+                                  Text('Open in', style: Theme.of(context).textTheme.headlineSmall),
+                                  const Gap(10.0),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          launchUrl(Uri.parse(homeController.parkingLocation.value!.parkingWazeLink));
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Image(
+                                              image: const AssetImage(wazeApp),
+                                              height: size.height * 0.1,
+                                            ),
+                                            const Text('Waze'),
+                                          ],
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          launchUrl(Uri.parse(homeController.parkingLocation.value!.parkingGoogleLink));
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Image(
+                                              image: const AssetImage(googleApp),
+                                              height: size.height * 0.1,
+                                            ),
+                                            const Text('Google Maps'),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Gap(20.0),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('GO TO PARKING'),
                     ),
                   ),
                 ],
-              ),
-            ),
+              );
+            }),
           ),
-        ],
+        ),
       ),
     );
   }
