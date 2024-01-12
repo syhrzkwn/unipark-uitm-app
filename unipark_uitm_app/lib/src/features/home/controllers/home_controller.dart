@@ -4,14 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:unipark_uitm_app/src/data/repositories/parking/parking_repository.dart';
 import 'package:unipark_uitm_app/src/features/parking/models/parking_model.dart';
 import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 
 class HomeController extends GetxController {
   static HomeController get instance => Get.find();
 
-  final parkingRepository = Get.put(ParkingRepository());
   var currentLocation = Rx<LocationData?>(null);
   var parkingLocation = Rx<ParkingModel?>(null);
   GoogleMapController? mapController;
