@@ -67,13 +67,13 @@ class HomePage extends StatelessWidget {
           myLocationButtonEnabled: false,
           trafficEnabled: true,
           initialCameraPosition: const CameraPosition(
-            target: LatLng(0, 0), // Initial position
-            zoom: 2,
+            target: LatLng(3.07018, 101.49955), // Initial position
+            zoom: 15,
           ),
           markers: parkingLocation != null ? {
             Marker(
               markerId: MarkerId(parkingLocation.id ?? ''),
-              position: LatLng(parkingLocation.parkingLng, parkingLocation.parkingLat),
+              position: LatLng(parkingLocation.parkingLat, parkingLocation.parkingLng),
               icon: homeController.customIcon.value ?? BitmapDescriptor.defaultMarker,
               infoWindow: InfoWindow(
                 title: parkingLocation.parkingName,
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(defaultSize),
           child: Container(
-            height: 196,
+            height: 200,
             padding: const EdgeInsets.all(defaultSize),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
@@ -111,13 +111,19 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('NEAREST PARKING  •  ${homeController.parkingLocation.value!.distance}', style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text(homeController.parkingLocation.value!.parkingName, style: TextStyle(fontSize: 17, fontFamily: 'Epilogue', fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
+                  Text(homeController.parkingLocation.value!.parkingName, style: TextStyle(fontSize: 18.0, fontFamily: 'Epilogue', fontWeight: FontWeight.bold, color: dark ? whiteColor : blackColor)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
                       const Gap(5.0),
-                      Text(homeController.parkingLocation.value!.parkingRfidStatus ? 'Parking Available: ${homeController.parkingLocation.value!.parkingAvailable}/${homeController.parkingLocation.value!.parkingTotal}' : 'Parking Available: not counted'),
+                      Text.rich(
+                        TextSpan(text: "Parking Available: ",
+                          children: [
+                            TextSpan(text: homeController.parkingLocation.value!.parkingRfidStatus ? "${homeController.parkingLocation.value!.parkingTotal - homeController.parkingLocation.value!.parkingAvailable}" : "not counted", style: const TextStyle(fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
