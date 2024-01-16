@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_database/firebase_database.dart'; // Firebase Realtime DB
+// import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
 import 'package:unipark_uitm_app/src/features/core/models/user_model.dart';
@@ -42,6 +42,7 @@ class UserRepository extends GetxController {
   Future<void> updateUserInformation(UserModel updateUser) async {
     try {
       await _dbFirestore.collection("Users").doc(updateUser.id).update(updateUser.toJson());
+      // await _dbRealTime.ref().child("Users").child(updateUser.id).update(updateUser.toJson());
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } catch (e) {
@@ -52,6 +53,7 @@ class UserRepository extends GetxController {
   Future<void> updateSingleField(Map<String, dynamic> json) async {
     try {
       await _dbFirestore.collection("Users").doc(AuthenticationRepository.instance.authUser?.uid).update(json);
+      // await _dbRealTime.ref().child("Users").child(AuthenticationRepository.instance.authUser!.uid).update(json);
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } catch (e) {
@@ -62,6 +64,7 @@ class UserRepository extends GetxController {
   Future<void> removeUserRecord(String userId) async {
     try {
       await _dbFirestore.collection("Users").doc(userId).delete();
+      // await _dbRealTime.ref().child("Users").child(userId).remove();
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } catch (e) {
