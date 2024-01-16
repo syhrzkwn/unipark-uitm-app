@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:unipark_uitm_app/src/data/repositories/user/user_repository.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/introduction_page.dart';
-import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
 import 'package:unipark_uitm_app/src/features/core/pages/navigation_menu.dart';
 import 'package:unipark_uitm_app/src/data/repositories/exceptions/firebase_auth_exception.dart';
 
@@ -97,7 +96,6 @@ class AuthenticationRepository extends GetxController {
     try {
       await GoogleSignIn().signOut();
       await _auth.signOut();
-      Get.offAll(() => const SigninPage());
     } on FirebaseAuthException catch(e) {
       throw TFirebaseAuthException(e.code).message;
     } catch (e) {

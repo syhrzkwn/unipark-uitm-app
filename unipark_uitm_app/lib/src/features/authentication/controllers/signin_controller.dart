@@ -26,7 +26,7 @@ class SignInController extends GetxController {
       if (!signInFormKey.currentState!.validate()) return;
 
       // Sign In user with Firebase Authentication
-      final userCredential = await AuthenticationRepository.instance.signInWithEmailAndPassword(email.text.trim(), password.text.trim());
+      await AuthenticationRepository.instance.signInWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();

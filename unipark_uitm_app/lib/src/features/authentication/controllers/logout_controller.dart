@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
+import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/network_manager.dart';
 import 'package:unipark_uitm_app/src/utils/theme/widget_themes/snackbar_theme.dart';
 
@@ -14,6 +15,7 @@ class LogoutController extends GetxController {
 
       // Logout user from application
       await AuthenticationRepository.instance.logout();
+      Get.offAll(() => const SigninPage());
     } catch (e) {
       // Show some Generic Error to the user
       SnackBarTheme.errorSnackBar(title: 'Error', message: e.toString());
