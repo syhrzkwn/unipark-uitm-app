@@ -27,7 +27,7 @@ class WRFIDCard extends StatelessWidget {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: const BorderSide(color: borderColor, width: 1),
+          side: BorderSide(color: dark ? textColor1 : borderColor, width: 1),
         ),
         child: Container(
           padding: const EdgeInsets.all(defaultSize),

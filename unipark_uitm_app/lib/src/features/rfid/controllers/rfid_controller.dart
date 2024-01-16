@@ -21,63 +21,70 @@ class RfidController extends GetxController {
     super.onInit();
   }
 
-  void fetchRfidRealTime() {
-    RxList<RfidModel> listARfid = <RfidModel>[].obs;
-    RxList<RfidModel> listTRfid = <RfidModel>[].obs;
+  void fetchRfidRealTime() async {
+    try {
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) return;
 
-    FirebaseFirestore.instance
-      .collection("RFID")
-      .where("user_id", isEqualTo: AuthenticationRepository.instance.authUser!.uid)
-      .where("rfid_status", isEqualTo: true)
-      .snapshots()
-      .listen((QuerySnapshot<Map<String, dynamic>> event) {
-      listARfid.clear();
-      for (var item in event.docs) {
-        RfidModel rfid = RfidModel(
-          id: item.id,
-          userId: item.get('user_id'),
-          ownerName: item.get('owner_name'),
-          parkingEntered: item.get('parking_entered'),
-          plateNumber: item.get('plate_number'),
-          rfidTagId: item.get('rfid_tag_id'),
-          rfidStatus: item.get('rfid_status'),
-          rfidRegisteredDate: item.get('rfid_registered_date'),
-          rfidExpiredDate: item.get('rfid_expired_date'),
-          vehicleBrand: item.get('vehicle_brand'),
-          vehicleModel: item.get('vehicle_model'),
-          vehicleYear: item.get('vehicle_year'),
-        );
-        listARfid.add(rfid);
-      }
-      listActiveRfid.assignAll(listARfid);
-    });
+      RxList<RfidModel> listARfid = <RfidModel>[].obs;
+      RxList<RfidModel> listTRfid = <RfidModel>[].obs;
 
-    FirebaseFirestore.instance
-      .collection("RFID")
-      .where("user_id", isEqualTo: AuthenticationRepository.instance.authUser!.uid)
-      .where("rfid_status", isEqualTo: false)
-      .snapshots()
-      .listen((QuerySnapshot<Map<String, dynamic>> event) {
-      listTRfid.clear();
-      for (var item in event.docs) {
-        RfidModel rfid = RfidModel(
-          id: item.id,
-          userId: item.get('user_id'),
-          ownerName: item.get('owner_name'),
-          parkingEntered: item.get('parking_entered'),
-          plateNumber: item.get('plate_number'),
-          rfidTagId: item.get('rfid_tag_id'),
-          rfidStatus: item.get('rfid_status'),
-          rfidRegisteredDate: item.get('rfid_registered_date'),
-          rfidExpiredDate: item.get('rfid_expired_date'),
-          vehicleBrand: item.get('vehicle_brand'),
-          vehicleModel: item.get('vehicle_model'),
-          vehicleYear: item.get('vehicle_year'),
-        );
-        listTRfid.add(rfid);
-      }
-      listTerminatedRfid.assignAll(listTRfid);
-    });
+      FirebaseFirestore.instance
+          .collection("RFID")
+          .where("user_id", isEqualTo: AuthenticationRepository.instance.authUser!.uid)
+          .where("rfid_status", isEqualTo: true)
+          .snapshots()
+          .listen((QuerySnapshot<Map<String, dynamic>> event) {
+        listARfid.clear();
+        for (var item in event.docs) {
+          RfidModel rfid = RfidModel(
+            id: item.id,
+            userId: item.get('user_id'),
+            ownerName: item.get('owner_name'),
+            parkingEntered: item.get('parking_entered'),
+            plateNumber: item.get('plate_number'),
+            rfidTagId: item.get('rfid_tag_id'),
+            rfidStatus: item.get('rfid_status'),
+            rfidRegisteredDate: item.get('rfid_registered_date'),
+            rfidExpiredDate: item.get('rfid_expired_date'),
+            vehicleBrand: item.get('vehicle_brand'),
+            vehicleModel: item.get('vehicle_model'),
+            vehicleYear: item.get('vehicle_year'),
+          );
+          listARfid.add(rfid);
+        }
+        listActiveRfid.assignAll(listARfid);
+      });
+
+      FirebaseFirestore.instance
+          .collection("RFID")
+          .where("user_id", isEqualTo: AuthenticationRepository.instance.authUser!.uid)
+          .where("rfid_status", isEqualTo: false)
+          .snapshots()
+          .listen((QuerySnapshot<Map<String, dynamic>> event) {
+        listTRfid.clear();
+        for (var item in event.docs) {
+          RfidModel rfid = RfidModel(
+            id: item.id,
+            userId: item.get('user_id'),
+            ownerName: item.get('owner_name'),
+            parkingEntered: item.get('parking_entered'),
+            plateNumber: item.get('plate_number'),
+            rfidTagId: item.get('rfid_tag_id'),
+            rfidStatus: item.get('rfid_status'),
+            rfidRegisteredDate: item.get('rfid_registered_date'),
+            rfidExpiredDate: item.get('rfid_expired_date'),
+            vehicleBrand: item.get('vehicle_brand'),
+            vehicleModel: item.get('vehicle_model'),
+            vehicleYear: item.get('vehicle_year'),
+          );
+          listTRfid.add(rfid);
+        }
+        listTerminatedRfid.assignAll(listTRfid);
+      });
+    } catch (e) {
+      SnackBarTheme.errorSnackBar(title: 'Error', message: e.toString());
+    }
   }
 
   // void fetchRfidInformation() async {

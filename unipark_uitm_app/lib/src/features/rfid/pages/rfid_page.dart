@@ -3,8 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/features/rfid/controllers/rfid_controller.dart';
 import 'package:unipark_uitm_app/src/features/rfid/pages/rfid_add_page.dart';
+import 'package:unipark_uitm_app/src/utils/constants/images.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
+import 'package:unipark_uitm_app/src/utils/helpers/helper_functions.dart';
 import 'package:unipark_uitm_app/src/utils/widgets/rfid_card.dart';
 
 class RFIDPage extends StatelessWidget {
@@ -15,6 +17,7 @@ class RFIDPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rfidController = Get.put(RfidController());
+    var size = HelperFunction.screenSize();
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +39,18 @@ class RFIDPage extends StatelessWidget {
               const Gap(40.0),
               Obx(() {
                 if(rfidController.listActiveRfid.isEmpty) {
-                  return const Center(child: Text('No active RFID found. Please activate new RFID.'));
+                  return Center(
+                    child: Column(
+                      children: [
+                        const Gap(50.0),
+                        Image(
+                          image: const AssetImage(noRfid),
+                          height: size.height * 0.3,
+                        ),
+                        const Text('No active RFID found. Please activate new RFID'),
+                      ],
+                    ),
+                  );
                 }
                 return GridView.builder(
                   shrinkWrap: true,

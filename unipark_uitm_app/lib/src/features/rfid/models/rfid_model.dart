@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RfidModel {
-  String? id;
+  String id;
   String? userId;
   String ownerName;
   bool parkingEntered;
@@ -16,7 +16,7 @@ class RfidModel {
 
   // Constructor
   RfidModel({
-    this.id,
+    required this.id,
     required this.userId,
     required this.ownerName,
     required this.parkingEntered,
@@ -32,6 +32,7 @@ class RfidModel {
 
   // Static function to create an empty rfid model
   static RfidModel empty() => RfidModel(
+    id: '',
     userId: '',
     ownerName: '',
     parkingEntered: false,
@@ -46,7 +47,7 @@ class RfidModel {
   );
 
   // Convert model to JSON structure for storing data in Firebase
-  toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
       'owner_name': ownerName,

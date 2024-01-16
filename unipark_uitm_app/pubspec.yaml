@@ -54,6 +54,7 @@ dependencies:
   package_info_plus: ^4.2.0
   firebase_messaging: ^14.7.10
   url_launcher: ^6.1.14
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -107,6 +108,7 @@ flutter:
     - assets/images/map_marker.png
     - assets/images/google_map.png
     - assets/images/waze.png
+    - assets/images/no_rfid.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

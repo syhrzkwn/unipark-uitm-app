@@ -91,7 +91,7 @@ class RFIDDetailPage extends StatelessWidget {
                           child: const Text('No', style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                         TextButton(
-                          onPressed: () => controller.terminateRfid(id: rfid.id!),
+                          onPressed: () => controller.terminateRfid(id: rfid.id),
                           child: const Text('Yes', style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
                       ],
