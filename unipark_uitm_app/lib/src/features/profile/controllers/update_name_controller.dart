@@ -11,7 +11,7 @@ class UpdateNameController extends GetxController {
 
   final name = TextEditingController(); // controller for name input
   final userController = UserController.instance;
-  final userRespository = Get.put(UserRepository());
+  final userRepository = Get.put(UserRepository());
   GlobalKey<FormState> updateUserNameFormKey = GlobalKey<FormState>(); // Form key for form validation
 
   @override
@@ -34,8 +34,8 @@ class UpdateNameController extends GetxController {
       if (!updateUserNameFormKey.currentState!.validate()) return;
       
       // Update user name
-      Map<String, dynamic> udpatedName = {'name': name.text.trim()};
-      await userRespository.updateSingleField(udpatedName);
+      Map<String, dynamic> updatedName = {'name': name.text.trim()};
+      await userRepository.updateSingleField(updatedName);
 
       userController.user.value.name = name.text.trim();
 
