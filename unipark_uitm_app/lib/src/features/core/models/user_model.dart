@@ -7,6 +7,7 @@ class UserModel {
   int studentId;
   final String email;
   String phone;
+  String deviceToken;
 
   // Constructor
   UserModel({
@@ -15,13 +16,14 @@ class UserModel {
     required this.studentId,
     required this.email,
     required this.phone,
+    required this.deviceToken,
   });
 
   // Format phone number, example: +6012-3456789
   String get formattedPhoneNo => Formatter.formatPhoneNumber(phone);
 
   // Static function to create an empty user model
-  static UserModel empty() => UserModel(id: '', name: '', studentId: 0, email: '', phone: '');
+  static UserModel empty() => UserModel(id: '', name: '', studentId: 0, email: '', phone: '', deviceToken: '');
 
   // Convert model to JSON structure for storing data in Firebase
   Map<String, dynamic> toJson() {
@@ -30,6 +32,7 @@ class UserModel {
       'student_id': studentId,
       'email': email,
       'phone': formattedPhoneNo,
+      'device_token': deviceToken,
     };
   }
 
@@ -43,6 +46,7 @@ class UserModel {
         studentId: data['student_id'] ?? 0,
         email: data['email'] ?? '',
         phone: data['phone'] ?? '',
+        deviceToken: data['device_token'] ?? '',
       );
     }
     return UserModel.empty();

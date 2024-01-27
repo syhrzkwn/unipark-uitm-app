@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
 import 'package:unipark_uitm_app/src/data/repositories/user/user_repository.dart';
@@ -17,6 +18,7 @@ class RegisterController extends GetxController {
   final password = TextEditingController(); // controller for password input
   final hidePassword = true.obs; // Observable for hiding/showing password
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>(); // Form key for form validation
+  final _firebaseMessaging = FirebaseMessaging.instance;
 
   // Call this function on register page ui
   void registerUser() async {
@@ -31,6 +33,9 @@ class RegisterController extends GetxController {
       // Register user in the Firebase Authentication
       final userCredential = await AuthenticationRepository.instance.createUserWithEmailAndPassword(email.text.trim(), password.text.trim());
 
+      // fetch the FCM token for this device
+      final fCMToken = await _firebaseMessaging.getToken();
+
       // Save Authenticated user data in Firebase Firestore
       final newUser = UserModel(
         id: userCredential.user!.uid,
@@ -38,6 +43,7 @@ class RegisterController extends GetxController {
         studentId: int.parse(studentId.text.trim()),
         email: email.text.trim(),
         phone: phone.text.trim(),
+        deviceToken: fCMToken!,
       );
 
       final userRepository = Get.put(UserRepository());

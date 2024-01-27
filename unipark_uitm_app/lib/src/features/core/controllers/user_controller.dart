@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
 import 'package:unipark_uitm_app/src/data/repositories/user/user_repository.dart';
+import 'package:unipark_uitm_app/src/features/authentication/pages/signin_page.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/re_signin_page.dart';
 import 'package:unipark_uitm_app/src/features/core/models/user_model.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/network_manager.dart';
@@ -17,6 +19,7 @@ class UserController extends GetxController {
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
   GlobalKey<FormState> reSignInKey = GlobalKey<FormState>();
+  final _firebaseMessaging = FirebaseMessaging.instance;
 
   @override
   void onInit() {
@@ -35,8 +38,12 @@ class UserController extends GetxController {
     }
   }
 
+  // Save user record when sign-in with Google
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
+      // fetch the FCM token for this device
+      final fCMToken = await _firebaseMessaging.getToken();
+
       if (userCredential != null) {
 
         // Map Data
@@ -46,6 +53,7 @@ class UserController extends GetxController {
           studentId: 0,
           email: userCredential.user!.email ?? '',
           phone: userCredential.user!.phoneNumber ?? '',
+          deviceToken: fCMToken!,
         );
 
         // Save User Data
@@ -53,7 +61,7 @@ class UserController extends GetxController {
       }
     } catch (e) {
       // Show some Generic Error to the user
-      SnackBarTheme.errorSnackBar(title: 'Error', message: 'Something went wrong. You can resave your information in your profile.');
+      SnackBarTheme.errorSnackBar(title: 'Error', message: 'Something went wrong. You can re-save your information in your profile.');
     }
   }
 
@@ -92,6 +100,9 @@ class UserController extends GetxController {
       await auth.deleteAccount();
       await auth.logout();
 
+      SnackBarTheme.successSnackBar(title: 'Success', message: 'Your account has been deleted.');
+
+      Get.offAll(() => const SigninPage());
     } catch (e) {
       // Show some Generic Error to the user
       SnackBarTheme.errorSnackBar(title: 'Error', message: 'Something went wrong. Please try again.');
