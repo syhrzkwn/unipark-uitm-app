@@ -18,6 +18,7 @@ class HomeController extends GetxController {
   Location location = Location();
   List<ParkingModel> listParking = <ParkingModel>[];
   Rx<BitmapDescriptor?> customIcon = Rx<BitmapDescriptor?>(null);
+  var permissionStatus = Rx<PermissionStatus>(PermissionStatus.denied);
 
   @override
   void onInit() {
@@ -26,6 +27,7 @@ class HomeController extends GetxController {
     loadCustomMarker();
     location.requestPermission().then((granted) {
       if (granted == PermissionStatus.granted) {
+        permissionStatus.value = granted;
         location.onLocationChanged.listen((locationData) {
           currentLocation.value = locationData;
           parkingLocation.value = _findNearestParkingLocation(locationData);
