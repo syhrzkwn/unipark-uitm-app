@@ -10,3 +10,4 @@ const String mapMarker = "assets/images/map_marker.png";
 const String googleApp = "assets/images/google_map.png";
 const String wazeApp = "assets/images/waze.png";
 const String noRfid = "assets/images/no_rfid.png";
+const String locationDenied = "assets/images/location_denied.png";
