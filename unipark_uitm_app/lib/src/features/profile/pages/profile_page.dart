@@ -1,6 +1,8 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.dart';
 import 'package:unipark_uitm_app/src/features/profile/controllers/profile_controller.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/profile_edit_page.dart';
@@ -48,7 +50,7 @@ class ProfilePage extends StatelessWidget {
                 const Gap(10.0),
                 const Divider(color: borderColor),
                 ListTile(
-                  leading: Icon(Icons.person_outline_outlined, color: dark ? whiteColor : textColor1),
+                  leading: Icon(MingCute.user_3_line, color: dark ? whiteColor : textColor1),
                   title: const Text('Personal information'),
                   trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
                   onTap: () {Get.to(() => const ProfileEditPage());},
@@ -67,10 +69,24 @@ class ProfilePage extends StatelessWidget {
                 const Gap(10.0),
                 const Divider(color: borderColor),
                 ListTile(
-                  leading: Icon(dark ? Icons.dark_mode_outlined : Icons.light_mode_outlined, color: dark ? whiteColor : textColor1),
+                  leading: Icon(MingCute.location_2_line, color: dark ? whiteColor : textColor1),
+                  title: const Text('Location'),
+                  trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
+                  onTap: () => AppSettings.openAppSettings(type: AppSettingsType.location),
+                ),
+                const Divider(color: borderColor, indent: 70.0),
+                ListTile(
+                  leading: Icon(MingCute.notification_line, color: dark ? whiteColor : textColor1),
+                  title: const Text('Notification'),
+                  trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
+                  onTap: () => AppSettings.openAppSettings(type: AppSettingsType.notification),
+                ),
+                const Divider(color: borderColor, indent: 70.0),
+                ListTile(
+                  leading: Icon(dark ? MingCute.moon_line : MingCute.sun_line, color: dark ? whiteColor : textColor1),
                   title: const Text('Theme'),
                   trailing: Obx(
-                    () => Switch(
+                        () => Switch(
                       activeColor: primaryColor,
                       inactiveThumbColor: primaryColor,
                       inactiveTrackColor: secondaryColor,
@@ -89,7 +105,7 @@ class ProfilePage extends StatelessWidget {
                 const Gap(10.0),
                 const Divider(color: borderColor),
                 ListTile(
-                  leading: Icon(Icons.info_outline_rounded, color: dark ? whiteColor : textColor1),
+                  leading: Icon(MingCute.information_line, color: dark ? whiteColor : textColor1),
                   title: const Text('About'),
                   trailing: Icon(Icons.arrow_forward_ios_outlined, size: 14.0, color: dark ? whiteColor : textColor1),
                   onTap: () {
