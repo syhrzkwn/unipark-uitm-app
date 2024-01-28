@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/parking/models/parking_model.dart';
 import 'package:unipark_uitm_app/src/features/parking/pages/parking_detail_page.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
@@ -58,7 +59,7 @@ class WParkingCard extends StatelessWidget {
                 const Gap(20.0),
                 Row(
                   children: [
-                    Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
+                    Icon(MingCute.car_3_line, color: dark ? whiteColor : textColor1),
                     const Gap(5.0),
                     Text.rich(
                       TextSpan(text: "Parking Available: ",

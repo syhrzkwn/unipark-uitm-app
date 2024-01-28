@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/delete_account_page.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/update_name_page.dart';
@@ -57,7 +58,7 @@ class ProfileEditPage extends StatelessWidget {
               const Text('EMAIL ADDRESS', style: TextStyle(fontWeight: FontWeight.bold)),
               ListTile(
                 title: Text(userController.user.value.email),
-                trailing: Icon(Icons.lock_outlined, size: 20.0, color: dark ? whiteColor : textColor1),
+                trailing: Icon(MingCute.lock_line, size: 20.0, color: dark ? whiteColor : textColor1),
                 onTap: () {ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('You are not allowed to edit this field. Please contact support.')));},
               ),
               const Divider(color: borderColor),

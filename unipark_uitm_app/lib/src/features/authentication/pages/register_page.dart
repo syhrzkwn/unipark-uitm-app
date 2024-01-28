@@ -153,7 +153,7 @@ class RegisterFormWidget extends StatelessWidget {
                 hintText: 'Password',
                 suffixIcon: IconButton(
                   onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
-                  icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                  icon: Icon(controller.hidePassword.value ? MingCute.eye_close_line : MingCute.eye_2_line),
                 ),
               ),
             ),
@@ -174,7 +174,7 @@ class RegisterFormWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                icon: Logo(Logos.google, size:20.0),
+                icon: Brand(Brands.google, size:22.0),
                 onPressed: () => controller1.googleSignIn(),
                 label: const Text(
                   'Continue with Google',

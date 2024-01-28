@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/sizes.dart';
 
@@ -27,11 +28,11 @@ class DeleteAccountPage extends StatelessWidget {
                 Text('By deleting your UniPark@UiTM Account, you aware and agree to these following conditions:', style: Theme.of(context).textTheme.titleSmall),
                 const Gap(10.0),
                 ListTile(
-                  leading: const Icon(Icons.error, color: Colors.orange),
+                  leading: const Icon(MingCute.warning_fill, color: Colors.orange),
                   title: Text("Account can't be reinstated.", style: Theme.of(context).textTheme.titleSmall),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.error, color: Colors.orange),
+                  leading: const Icon(MingCute.warning_fill, color: Colors.orange),
                   title: Text("All data linked to the account will be deleted according to UniPark@UiTM.", style: Theme.of(context).textTheme.titleSmall),
                 ),
               ],

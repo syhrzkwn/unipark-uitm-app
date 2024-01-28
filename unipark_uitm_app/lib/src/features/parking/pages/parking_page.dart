@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:unipark_uitm_app/src/features/parking/controllers/parking_controller.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
@@ -63,6 +64,7 @@ class ParkingPage extends StatelessWidget {
             ),
             body: Obx(() {
               if (parkingController.markers.isEmpty) {
+                Future.delayed(const Duration(seconds: 4));
                 return const Center(child: CircularProgressIndicator());
               }
 
@@ -94,7 +96,7 @@ class ParkingPage extends StatelessWidget {
                   heroTag: 'location_button',
                   onPressed: () => parkingController.currentLocationCamera(),
                   backgroundColor: dark ? darkModeBackground : whiteColor,
-                  child: Icon(Icons.my_location_outlined, color: dark ? whiteColor : textColor1),
+                  child: Icon(MingCute.location_2_line, color: dark ? whiteColor : textColor1),
                 ),
               ),
             ),

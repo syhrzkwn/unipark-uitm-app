@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/home/controllers/home_controller.dart';
 import 'package:unipark_uitm_app/src/features/parking/models/parking_model.dart';
 import 'package:unipark_uitm_app/src/utils/constants/colors.dart';
@@ -43,7 +44,7 @@ class ParkingDetailPage extends StatelessWidget {
                   '\nby UniPark@UiTM'
               );
             },
-            icon: const Icon(Icons.share_outlined),
+            icon: const Icon(MingCute.share_2_line),
           ),
           const Gap(5.0),
         ],
@@ -86,7 +87,7 @@ class ParkingDetailPage extends StatelessWidget {
               const Gap(20.0),
               Row(
                 children: [
-                  Icon(Icons.location_on_outlined, color: dark ? whiteColor : textColor1),
+                  Icon(MingCute.map_pin_line, color: dark ? whiteColor : textColor1),
                   const Gap(5.0),
                   Expanded(
                     child: Text(
@@ -100,7 +101,7 @@ class ParkingDetailPage extends StatelessWidget {
               const Gap(10.0),
               Row(
                 children: [
-                  Icon(Icons.directions_car_filled_outlined, color: dark ? whiteColor : textColor1),
+                  Icon(MingCute.car_3_line, color: dark ? whiteColor : textColor1),
                   const Gap(5.0),
                   Text.rich(
                     TextSpan(text: "Parking Available: ",

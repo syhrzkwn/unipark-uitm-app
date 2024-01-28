@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:unipark_uitm_app/src/features/inbox/pages/inbox_page.dart';
 import 'package:unipark_uitm_app/src/features/parking/pages/parking_page.dart';
 import 'package:unipark_uitm_app/src/features/profile/pages/profile_page.dart';
@@ -53,10 +54,10 @@ class _NavigationMenuState extends State<NavigationMenu> {
             selectedItemColor: dark ? whiteColor : primaryColor,
             unselectedItemColor: dark ? whiteColor.withOpacity(0.7) : textColor2,
             items: <BottomNavigationBarItem> [
-              BottomNavigationBarItem(icon: _selectedIndex==0 ? const Icon(Icons.home_sharp) : const Icon(Icons.home_outlined), label: "Home"),
-              BottomNavigationBarItem(icon: _selectedIndex==1 ? const Icon(Icons.directions_car_filled) : const Icon(Icons.directions_car_filled_outlined), label: "Parking"),
-              BottomNavigationBarItem(icon: _selectedIndex==2 ? const Icon(Icons.inbox_rounded) : const Icon(Icons.inbox_outlined), label: "Inbox"),
-              BottomNavigationBarItem(icon: _selectedIndex==3 ? const Icon(Icons.account_circle_rounded) : const Icon(Icons.account_circle_outlined), label: "Profile"),
+              BottomNavigationBarItem(icon: _selectedIndex==0 ? const Icon(MingCute.home_6_fill) : const Icon(MingCute.home_6_line), label: "Home"),
+              BottomNavigationBarItem(icon: _selectedIndex==1 ? const Icon(MingCute.car_3_fill) : const Icon(MingCute.car_3_line), label: "Parking"),
+              BottomNavigationBarItem(icon: _selectedIndex==2 ? const Icon(MingCute.inbox_fill) : const Icon(MingCute.inbox_line), label: "Inbox"),
+              BottomNavigationBarItem(icon: _selectedIndex==3 ? const Icon(MingCute.user_4_fill) : const Icon(MingCute.user_4_line), label: "Profile"),
             ],
           ),
         ),
