@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
+import 'package:unipark_uitm_app/src/data/repositories/user/user_repository.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
 import 'package:unipark_uitm_app/src/features/core/controllers/user_controller.dart';
 import 'package:unipark_uitm_app/src/utils/helpers/network_manager.dart';
@@ -14,6 +16,8 @@ class SignInController extends GetxController {
   final hidePassword = true.obs; // Observable for hiding/showing password
   GlobalKey<FormState> signInFormKey = GlobalKey<FormState>(); // Form key for form validation
   final userController = Get.put(UserController());
+  final _firebaseMessaging = FirebaseMessaging.instance;
+  final userRepository = Get.put(UserRepository());
 
   // Call this function on register page ui
   Future<void> signInUser() async {
@@ -27,6 +31,13 @@ class SignInController extends GetxController {
 
       // Sign In user with Firebase Authentication
       await AuthenticationRepository.instance.signInWithEmailAndPassword(email.text.trim(), password.text.trim());
+
+      // fetch the FCM token for this device
+      final fCMToken = await _firebaseMessaging.getToken();
+
+      // Update device token
+      Map<String, dynamic> updatedFCMToken = {'device_token': fCMToken};
+      await userRepository.updateSingleField(updatedFCMToken);
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
