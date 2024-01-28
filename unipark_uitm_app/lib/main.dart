@@ -8,6 +8,7 @@ import 'package:unipark_uitm_app/firebase_options.dart';
 import 'package:unipark_uitm_app/src/bindings/general_bindings.dart';
 import 'package:unipark_uitm_app/src/features/authentication/pages/introduction_page.dart';
 import 'package:unipark_uitm_app/src/data/repositories/authentication/authentication_repository.dart';
+import 'package:unipark_uitm_app/src/features/core/controllers/notification_controller.dart';
 import 'package:unipark_uitm_app/src/utils/theme/app_theme.dart';
 
 Future<void> main() async {
@@ -24,7 +25,10 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.android)
       .then((FirebaseApp value) => Get.put(AuthenticationRepository()));
 
-  // To make sure app always potrait up
+  // Initialize Notifications
+  await NotificationController().initNotification();
+
+  // To make sure app always portrait up
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(const MyApp()));
 }
